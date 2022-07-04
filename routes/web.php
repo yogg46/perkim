@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DarkModeController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\UserMentController;
+use App\Http\Controllers\ImageUploadController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +32,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/user-management', [App\Http\Controllers\UserMentController::class, 'index'])->name('usermanagement')->middleware('auth', 'checkRole:2');
 
 Route::resource('user', UserMentController::class)->middleware('auth', 'checkRole:2');
+
+
+
+Route::resource('pengajuan', PengajuanController::class)->middleware('auth');
+//For adding an image
+Route::get('/add-image', [ImageUploadController::class, 'addImage'])->name('images.add');
+
+//For storing an image
+Route::post('/store-image', [ImageUploadController::class, 'storeImage'])
+    ->name('images.store');
+
+//For showing an image
+Route::get('/view-image', [ImageUploadController::class, 'viewImage'])->name('images.view');

@@ -11,6 +11,7 @@ class Index extends Component
     use WithPagination;
     public $pagek = 10;
     public $f_tahun = '';
+    public $f_status = '';
     public $search = '';
 
     public function render()
@@ -18,7 +19,7 @@ class Index extends Component
         return view(
             'livewire.pengajuan.index',
             [
-                'pengajuan' => Pengajuan::search('tahun', $this->f_tahun)->search('nama_pro', $this->search)->paginate($this->pagek),
+                'pengajuan' => Pengajuan::search('tahun', $this->f_tahun)->search('nama_pro', $this->search)->search('status', $this->f_status)->paginate($this->pagek),
                 's_tahun' => Pengajuan::pluck('tahun')->toArray(),
             ]
         )

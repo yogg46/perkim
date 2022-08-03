@@ -1,7 +1,7 @@
 <div>
-    <h2 class="intro-y text-lg font-medium mt-10">
+    {{-- <h2 class="intro-y text-lg font-medium mt-10">
         Transaction List
-    </h2>
+    </h2> --}}
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap xl:flex-nowrap items-center mt-2">
             <div class="flex w-full sm:w-auto">
@@ -15,13 +15,13 @@
                 </select>
                 {{-- @json($s_tahun) --}}
                 {{-- @dd(array_unique($s_tahun)) --}}
-                <select class="form-select box ml-2">
-                    <option>Status</option>
-                    <option>Revisi Berkas</option>
-                    <option>Revisi Lapangan</option>
-                    <option>Verifikasi Berkas</option>
-                    <option>Verifikasi Lapangan</option>
-                    <option>Selesai</option>
+                <select wire:model="f_status" class="form-select box ml-2">
+                    <option value="">Status</option>
+                    <option value="1">Revisi Berkas</option>
+                    <option value="2">Revisi Lapangan</option>
+                    <option value="3">Verifikasi Berkas</option>
+                    <option value="4">Verifikasi Lapangan</option>
+                    <option value="5">Selesai</option>
                 </select>
             </div>
             <div class="hidden xl:block mx-auto text-slate-500">
@@ -82,9 +82,18 @@
                             <td>
                                 {{ $key->nama_pro }}
                             </td>
-                            <td class="w-40 text-center">
-                                <div class="flex items-center justify-center whitespace-nowrap text-success">
-                                    <i class="h-4" data-lucide="check-square"></i>Completed
+                            <td class="w-40 ">
+                                <div class="flex whitespace-nowrap text-success">
+                                    <i class="h-4" data-lucide="check-square"></i>
+                                    {{ $key->status == 1
+                                        ? 'Revisi Berkas'
+                                        : ($key->status == 2
+                                            ? 'Revisi Lapangan'
+                                            : ($key->status == 3
+                                                ? 'Verifikasi Berkas'
+                                                : ($key->status == 4
+                                                    ? 'Verifikasi Lapangan'
+                                                    : 'Selesai'))) }}
                                 </div>
                             </td>
                             <td class="table-report__action">
@@ -150,7 +159,7 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
+        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center mb-3">
             <nav class="w-full sm:w-auto sm:mr-auto">
                 {{ $pengajuan->onEachSide(1)->links('layouts.pagination') }}
 
@@ -162,7 +171,9 @@
                 <option>50</option>
             </select>
         </div>
-        <!-- END: Pagination -->
+        <div class=" -mb-10">
+
+        </div>
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->
 

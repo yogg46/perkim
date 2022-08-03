@@ -21,8 +21,7 @@
                     <div class="{{ $menu }}__icon"> <i data-lucide="user-plus"></i> </div>
                     <div class="{{ $menu }}__title"> Add User </div>
                 </a>
-                <a href="{{ route('user.index') }}"
-                    class="{{ $menu }} {{ $slug1 == 'List User' ? $menu . '--active' : '' }} ">
+                <a href="/users" class="{{ $menu }} {{ $slug1 == 'List User' ? $menu . '--active' : '' }} ">
                     <div class="{{ $menu }}__icon"> <i data-lucide="library"></i> </div>
                     <div class="{{ $menu }}__title"> List User </div>
                 </a>
@@ -32,7 +31,7 @@
 
     </li>
     <li>
-        <a href="{{ route('pengajuan.index') }}" class="{{ $menu }}">
+        <a href="/pengajuans" class="{{ $menu }}">
             <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
             <div class="{{ $menu }}__title">
                 Pengajuan

@@ -111,90 +111,85 @@
                         {{-- <td class="w-10">
                             <input class="form-check-input" type="checkbox">
                         </td> --}}
-                        <td class=" w-10">
-                            1
-                        </td>
-                        <td class="w-40 !py-4"> 2022 </td>
-                        <td class="w-40">
-                            27-08-2022
-                        </td>
-                        <td class="text-uppercase">
-                            Pt.sedia
-                        </td>
-                        <td>
-                            Grand Tawang
-                        </td>
-                        <td class="w-40 text-center">
-                            <div class="flex items-center justify-center whitespace-nowrap text-success">
-                                <i class="h-4" data-lucide="check-square"></i>Completed
-                            </div>
-                        </td>
-                        <td class="table-report__action">
-                            <div class="flex justify-center items-center">
-                                <a data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"
-                                    class="flex items-center text-primary whitespace-nowrap mr-5" href="javascript:;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" icon-name="check-square"
-                                        data-lucide="check-square" class="lucide lucide-check-square w-4 h-4 mr-1">
-                                        <polyline points="9 11 12 14 22 4"></polyline>
-                                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
-                                    </svg> View </a>
-                            </div>
-                            <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body p-0">
-                                            <div class="p-5 text-center">
-                                                <div class="w-full h-64 my-5 image-fit"> <img data-tw-toggle="modal"
-                                                        data-tw-target="#next-overlapping-modal-preview"
-                                                        alt="Midone - HTML Admin Template" src="dist/images/preview-7.jpg"
-                                                        class="w-full rounded-md"> </div>
+                        @php
+                            $no = 1;
+                        @endphp
+                        @foreach ($pengajuan as $key)
+                            <td class=" w-10">
+                                {{ $no++ }}
+                            </td>
+                            <td class="w-40 !py-4"> {{ $key->date }} </td>
+                            <td class="w-40">
+                                {{ $key->date }}
+                            </td>
+                            <td class="text-uppercase">
+                                {{ $key->dev . $key->nama_dev }}
+                            </td>
+                            <td>
+                                {{ $key->nama_pro }}
+                            </td>
+                            <td class="w-40 text-center">
+                                <div class="flex items-center justify-center whitespace-nowrap text-success">
+                                    <i class="h-4" data-lucide="check-square"></i>Completed
+                                </div>
+                            </td>
+                            <td class="table-report__action">
+                                <div class="flex justify-center items-center">
+                                    {{-- <a data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"
+                                        class="flex items-center text-primary whitespace-nowrap mr-5" href="javascript:;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" icon-name="check-square"
+                                            data-lucide="check-square" class="lucide lucide-check-square w-4 h-4 mr-1">
+                                            <polyline points="9 11 12 14 22 4"></polyline>
+                                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                                        </svg> View </a> --}}
+                                    <a class="flex items-center text-primary whitespace-nowrap mr-5"
+                                        href="/pengajuans/{{ $key->slug }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" icon-name="check-square"
+                                            data-lucide="check-square" class="lucide lucide-check-square w-4 h-4 mr-1">
+                                            <polyline points="9 11 12 14 22 4"></polyline>
+                                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                                        </svg> View </a>
+                                </div>
+                                {{-- <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body p-0">
+                                                <div class="p-5 text-center">
+                                                    <div class="w-full h-64 my-5 image-fit"> <img data-tw-toggle="modal"
+                                                            data-tw-target="#next-overlapping-modal-preview"
+                                                            alt="Midone - HTML Admin Template"
+                                                            src="{{ url('public/Image/') }}" class="w-full rounded-md">
+                                                    </div>
 
-                                            </div>
-                                            <div id="next-overlapping-modal-preview" class="modal" tabindex="-1"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body text-center">
-                                                            <div class="w-full h-auto my-5 image-fit"> <img
-                                                                    alt="Midone - HTML Admin Template"
-                                                                    src="dist/images/preview-7.jpg"
-                                                                    class="w-full rounded-md"> </div>
+                                                </div>
+                                                <div id="next-overlapping-modal-preview" class="modal" tabindex="-1"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-xl">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body text-center img-fluid">
+                                                                <div class="h-full  w-full  "> <img
+                                                                        src="{{ url('public/Image/') }}"
+                                                                        class="h-full rounded-md"> </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="px-5 pb-8 text-center">
-                                                <button type="button" data-tw-dismiss="modal"
-                                                    class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                                                <button type="button" class="btn btn-danger w-24">Delete</button>
+                                                <div class="px-5 pb-8 text-center">
+                                                    <button type="button" data-tw-dismiss="modal"
+                                                        class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
+                                                    <button type="button" class="btn btn-danger w-24">Delete</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-
-                            <div id="overlapping-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body px-5 py-10">
-                                            <div class="text-center">
-                                                <div class="mb-5">Click button bellow to show overlapping modal!</div>
-                                                <!-- BEGIN: Overlapping Modal Toggle --> <a href="javascript:;"
-                                                    data-tw-toggle="modal"
-                                                    data-tw-target="#next-overlapping-modal-preview"
-                                                    class="btn btn-primary">Show Overlapping Modal</a>
-                                                <!-- END: Overlapping Modal Toggle -->
-                                            </div> <!-- BEGIN: Overlapping Modal Content -->
-                                            <!-- END: Overlapping Modal Content -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
+                                </div> --}}
+                            </td>
                     </tr>
+                    @endforeach
 
                 </tbody>
             </table>

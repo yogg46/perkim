@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('rekomendasis', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('persyaratan')->nullable();
-            $table->string('catatan')->nullable();
             $table->unsignedBigInteger('pengajuan')->constrained()
                 ->onUpdate('cascade');
+            $table->string('no_rekom')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('rekomendasis');
     }
 };

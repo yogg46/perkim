@@ -47,9 +47,9 @@ class UserMentController extends Controller
         //
         $this->validate($request, [
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'role' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8',
         ]);
         $request->merge(['password' => Hash::make($request->input('password'))]);
 
@@ -61,11 +61,11 @@ class UserMentController extends Controller
         ]);
 
         if ($user) {
-            Alert::toast('Data Berhasil disimpan', 'success');
+            Alert::alert('Data Berhasil disimpan', 'success')->position('top-end');
             return redirect()
                 ->route('user.index');
         } else {
-            Alert::toast('error', 'danger');
+            Alert::alert('error', 'danger')->position('top-end');
             return redirect()
                 ->back()
                 ->withInput()
@@ -120,7 +120,7 @@ class UserMentController extends Controller
             'name' => 'required',
             'username' => 'required',
             'role' => 'required',
-            'password' => 'required',
+            // 'password' => 'required',
         ]);
         $request->merge(['password' => Hash::make($request->input('password'))]);
 
@@ -136,7 +136,7 @@ class UserMentController extends Controller
         if ($user) {
             Alert::toast('Data Berhasil diupdate', 'success');
             return redirect()
-                ->route('user.index');
+                ->route('users');
         } else {
             Alert::toast('error', 'danger');
             return redirect()
@@ -160,6 +160,6 @@ class UserMentController extends Controller
 
         Alert::toast('Data Berhasil dihapus', 'success');
 
-        return redirect()->route('user.index');
+        return redirect()->route('users');
     }
 }

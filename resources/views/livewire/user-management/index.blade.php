@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('isi')
+<div>
     <h2 class="intro-y text-lg font-medium mt-10">
         List User
     </h2>
@@ -15,10 +13,11 @@
             <div class="hidden md:block mx-auto text-slate-500"></div>
             <div class="w-full align-self-end sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="search hidden sm:block">
-                    <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        icon-name="search" data-lucide="search"
+                    <input wire:model="search" type="text" class="search__input form-control border-transparent"
+                        placeholder="Search...">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" icon-name="search" data-lucide="search"
                         class="lucide lucide-search search__icon dark:text-slate-500">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -40,8 +39,9 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @php
-                        $no = 1;
+                        $no = ($user->currentpage() - 1) * $user->perpage() + 1;
                     @endphp
                     @foreach ($user as $key)
                         <tr class="intro-x">
@@ -71,8 +71,8 @@
                                         @csrf
                                         {{-- @method('DELETE') --}}
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="flex items-center text-danger show_confirm"> <i data-lucide="trash-2"
-                                                class="w-4 h-4 mr-1"></i> Delete </button>
+                                        <button class="flex items-center text-danger show_confirm"> <i
+                                                data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </button>
                                 </form>
         </div>
         </td>
@@ -84,17 +84,31 @@
         </table>
     </div>
 
-    {{ $user->onEachSide(1)->links('layouts.pagination') }}
 
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center mb-3">
+        <nav class="w-full sm:w-auto sm:mr-auto">
+            {{ $user->onEachSide(1)->links('layouts.pagination') }}
+
+        </nav>
+        <select wire:model="pagek" class="w-20 form-select box mt-3 sm:mt-0">
+            <option>10</option>
+            <option>25</option>
+            <option>35</option>
+            <option>50</option>
+        </select>
+    </div>
+
+    <div class=" -mb-7">
 
     </div>
-    <script>
-        $(document).ready(function() {
-            $('.data').DataTable();
-        });
+</div>
+<script>
+    $(document).ready(function() {
+        $('.data').DataTable();
+    });
 
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
-@endsection
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
+</div>

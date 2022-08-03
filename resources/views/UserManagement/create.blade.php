@@ -18,27 +18,40 @@
                     @csrf
                     <div>
                         <label for="regular-form-1" class="form-label">Nama</label>
-                        <input id="regular-form-1" type="text" class="form-control" placeholder="Nama" name='name'
+                        <input id="regular-form-1" type="text"
+                            class="form-control @error('name') border-danger @enderror" placeholder="Nama" name='name'
                             value="{{ old('name') }}" required>
+                        @error('name')
+                            <span class="error mt-2  text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mt-3">
                         <label for="regular-form-2" class="form-label">Username</label>
                         <input name='username' value="{{ old('username') }}" required id="regular-form-2" type="text"
-                            class="form-control " placeholder="Username">
+                            class="form-control @error('username') border-danger @enderror " placeholder="Username">
+                        @error('username')
+                            <span class="error mt-2  text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mt-3">
                         <label for="regular-form-3" class="form-label">Password</label>
                         <input name='password' value="{{ old('password') }}" required id="regular-form-3" type="password"
-                            class="form-control " placeholder="Password">
+                            class="form-control  @error('password') border-danger @enderror " placeholder="Password">
+                        @error('password')
+                            <span class="error mt-2  text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mt-3">
-                        <label for="regular-form-3" class="form-label">Role</label>
+                        <label for="regular-form-3" class="form-label @error('role') border-danger @enderror">Role</label>
                         <select name="role" data-placeholder="" class="tom-select w-full">
                             @foreach ($hak as $key)
                                 <option value="{{ $key->id }}">{{ $key->hakakses }}</option>
                             @endforeach
 
                         </select>
+                        @error('role')
+                            <span class="error mt-2  text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
 

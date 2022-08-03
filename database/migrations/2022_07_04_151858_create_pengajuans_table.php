@@ -15,11 +15,28 @@ return new class extends Migration
     {
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
+            $table->string('dev');
             $table->string('nama_dev');
-            $table->string('nama_pro');
-            $table->string('status');
-            $table->string('date');
-            $table->string('file');
+            $table->string('alamat_dev');
+            $table->string('no_hp');
+            $table->string('asosiasi');
+            $table->string('no_asosiasi');
+            $table->string('nama_pro')->nullable();
+            $table->string('alamat_pro')->nullable();
+            $table->string('pemohon1')->nullable();
+            $table->string('tel_pemohon1')->nullable();
+            $table->string('pemohon2')->nullable();
+            $table->string('tel_pemohon2')->nullable();
+            $table->string('psu')->nullable();
+            $table->string('kavling')->nullable();
+            $table->string('total')->nullable();
+            $table->string('total_kavling')->nullable();
+            $table->string('slug');
+            $table->string('status')->nullable();
+            $table->string('date')->nullable();
+            $table->string('tahun')->nullable();
+            $table->unsignedBigInteger('pengaju')->constrained()
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

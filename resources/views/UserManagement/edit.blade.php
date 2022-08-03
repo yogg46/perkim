@@ -29,7 +29,7 @@
                     </div>
                     <div class="mt-3">
                         <label for="regular-form-3" class="form-label">Password</label>
-                        <input name='password' value="{{ old('password') }}" required id="regular-form-3" type="password"
+                        <input name='password' value="{{ old('password') }}" id="regular-form-3" type="password"
                             class="form-control " placeholder="Password">
                     </div>
 

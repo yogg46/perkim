@@ -28,6 +28,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="/dist/css/app.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
 
+    @livewireStyles
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 
     <!-- END: CSS Assets-->
@@ -66,6 +69,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END: Dark Mode Switcher-->
 
         <!-- BEGIN: JS Assets-->
+        @livewireScripts
+
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
@@ -74,7 +79,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
         <script type="text/javascript">
             $('.show_confirm').click(function(event) {

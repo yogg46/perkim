@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('type_bangunans', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('persyaratan')->nullable();
-            $table->string('catatan')->nullable();
             $table->unsignedBigInteger('pengajuan')->constrained()
                 ->onUpdate('cascade');
+            $table->string('type');
+            $table->integer('jumlah');
+            $table->string('kategori');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('type_bangunans');
     }
 };

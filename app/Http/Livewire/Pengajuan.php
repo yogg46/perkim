@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class Pengajuan extends Component
 {
+    public $step = 1;
     public function mount($slug)
     {
         $this->pengajuan = ModelsPengajuan::where('slug', $slug)->first();
@@ -23,4 +24,19 @@ class Pengajuan extends Component
         )
             ->section('isi');;
     }
+
+
+    public function plus()
+    {
+        $this->step++;
+    }
+    public function minus()
+    {
+        $this->step--;
+    }
+    public function jump($to)
+    {
+        $this->step = $to;
+    }
+
 }

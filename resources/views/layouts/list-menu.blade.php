@@ -31,7 +31,7 @@
 
     </li>
     <li>
-        <a href="/pengajuans" class="{{ $menu }}">
+        <a href="/pengajuans" class="{{ $menu }} {{ $tittle == 'Pengajuan' ? $menu . '--active' : '' }}">
             <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
             <div class="{{ $menu }}__title">
                 Pengajuan

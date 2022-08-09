@@ -48,7 +48,7 @@
 
 
                     <button type="submit" class="btn btn-success mt-5"> <span class=" text-white"> Simpan </span> </button>
-                    <a href="{{ route('user.index') }}" class="btn btn-danger  ml-3 mt-5">Batal</a>
+                    <a href="/users" class="btn btn-danger  ml-3 mt-5">Batal</a>
                 </form>
 
             </div>

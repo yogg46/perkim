@@ -46,18 +46,39 @@ License: You must have a valid license purchased only from themeforest(the above
     @include('layouts.top-menu')
     <!-- END: Top Bar -->
     <div class="wrapper">
+
         <div class="wrapper-box">
+
             <!-- BEGIN: Side Menu -->
             @include('layouts.side-menu')
             <!-- END: Side Menu -->
             <!-- BEGIN: Content -->
             <div class="content">
-
+                @if (session()->has('message'))
+                    <div class="alert alert-success-soft alert-dismissible mt-3 show flex items-center mb-2"
+                        role="alert"> <i data-lucide="alert-triangle" class="w-6 h-6 mr-2"></i>
+                        {{ session('message') }} <button type="button" class="btn-close" data-tw-dismiss="alert"
+                            aria-label="Close"> <i data-lucide="x" class="w-4 h-4"></i>
+                        </button> </div>
+                @endif
                 @yield('isi')
 
                 <!-- END: Content -->
             </div>
         </div>
+
+
+        {{-- @if (session()->has('message')) --}}
+        {{-- <div id="success-notification-content" class="toastify-content hidden flex"> <i class="text-success"
+                data-lucide="check-circle"></i>
+            <div class="ml-4 mr-4">
+                <div class="font-medium"> berhasil</div>
+                <div class="text-slate-500 mt-1">The message will be sent in 5 minutes.</div>
+            </div>
+        </div> --}}
+        {{-- @endif --}}
+
+
         <!-- BEGIN: Dark Mode Switcher-->
         <div data-url="/dark-mode-switcher/{{ Auth::user()->id }}"
             class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-10 mr-10">
@@ -82,6 +103,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
         <script type="text/javascript">
+        
             $('.show_confirm').click(function(event) {
                 var form = $(this).closest("form");
                 var name = $(this).data("name");
@@ -98,6 +120,18 @@ License: You must have a valid license purchased only from themeforest(the above
                             form.submit();
                         }
                     });
+            });
+            //  Success notification
+            $("#success-notification-toggle").on("click", function() {
+                Toastify({
+                    node: $("#success-notification-content").clone().removeClass("hidden")[0],
+                    duration: -1,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                }).showToast();
             });
         </script>
         <!-- END: JS Assets-->

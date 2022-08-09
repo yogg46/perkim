@@ -36,7 +36,7 @@ class PengajuanFactory extends Factory
             'tel_pemohon2' => $this->faker->phoneNumber(),
             'psu' => $this->faker->randomNumber(3, true),
             'kavling' => $this->faker->randomNumber(3, true),
-            'total' => $this->faker->randomNumber(3, true),
+            // 'total' => $this->faker->randomNumber(3, true),
             'total_kavling' => $this->faker->randomNumber(3, true),
             'status' => Arr::random(['1', '2', '3', '4', '5']),
             'date' => now()->format('d-m-Y'),

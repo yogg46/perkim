@@ -15,7 +15,8 @@ class Pengajuan extends Component
 
     public function render()
     {
-        return view('livewire.pengajuan')->extends(
+        return view('livewire.pengajuan'
+        )->extends(
             'layouts.main',
             [
                 'tittle' => 'Pengajuan',

@@ -20,7 +20,7 @@ class Pengajuan extends Model
             $model->total = $model->psu + $model->kavling;
         });
 
-        
+
         static::updating(function ($model) {
             $model->total = $model->psu + $model->kavling;
         });
@@ -54,5 +54,15 @@ class Pengajuan extends Model
                 'source' => 'nama_pro'
             ]
         ];
+    }
+
+    public function pengaju()
+    {
+        return  $this->belongsTo(User::class, 'pengaju');
+    }
+
+    public function bangunan()
+    {
+        return $this->hasMany(type_bangunan::class,'pengajuan');
     }
 }

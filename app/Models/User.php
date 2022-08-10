@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(hakaksesuser::class, 'role');
     }
+
+    public function pengaju()
+    {
+       return $this->hasMany(Pengajuan::class,'pengaju');
+    }
 }

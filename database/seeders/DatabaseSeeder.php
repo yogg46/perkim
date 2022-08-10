@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Pengajuan;
+use App\Models\type_bangunan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(Userseeder::class);
         $this->call(Hakseeder::class);
         \App\Models\User::factory(30)->create();
-        Pengajuan::factory()->count(20)->create();
+        Pengajuan::factory()->count(2)->create();
+        type_bangunan::factory()->count(20)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

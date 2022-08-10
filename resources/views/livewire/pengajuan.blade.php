@@ -151,16 +151,76 @@
                 </div>
                 <div class="grid grid-cols-24   gap-4 gap-y-5 mt-5">
 
-                <div class="intro-y col-span-24 sm:col-span-6">
+                    <div class="intro-y col-span-24 sm:col-span-6">
 
-                    <label for="input-wizard-1" class="form-label">Total Kavling</label>
+                        <label for="input-wizard-1" class="form-label">Total Kavling</label>
 
-                    <input id="input-wizard-1" readonly type="text" class="form-control"
-                        placeholder="{{ $pengajuan->total }}">
-                </div>
+                        <input id="input-wizard-1" readonly type="text" class="form-control"
+                            placeholder="{{ $pengajuan->total }}">
+                    </div>
                 </div>
             @endif
 
+
+            @if ($step == 3)
+                <div class="overflow-x-auto">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                {{-- <th class="whitespace-nowrap">#</th> --}}
+                                <th class="whitespace-nowrap">Type Bangunan</th>
+                                <th class="whitespace-nowrap">Jumlah</th>
+                                <th class="whitespace-nowrap">Kategori</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pengajuan->bangunan as $key)
+                                <tr>
+                                    {{-- <td>1</td> --}}
+                                    <td>{{ $key->type }}</td>
+                                    <td>{{ $key->jumlah }}</td>
+                                    <td>{{ $key->kategori }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <th class=" whitespace-nowrap">
+                            </th>
+                            <th class=" whitespace-nowrap">
+                                Total Kavling
+
+                            </th>
+                            <th class=" whitespace-nowrap">
+                                123
+                            </th>
+                        </tfoot>
+                    </table>
+                </div>
+            @endif
+            @if ($step == 4)
+                <div class="overflow-x-auto">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                {{-- <th class="whitespace-nowrap">#</th> --}}
+                                <th class="whitespace-nowrap">No</th>
+                                <th class="whitespace-nowrap">Persyaratan</th>
+                                <th class="whitespace-nowrap">View</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            @endif
 
 
             <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">

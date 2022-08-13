@@ -12,6 +12,11 @@ class Pengajuan extends Model
     use HasFactory;
     use sluggable;
 
+
+    protected $guarded  = ['id'];
+    protected $primayKey = 'id';
+    protected $table = 'pengajuans';
+
     protected static function boot()
     {
         parent::boot();
@@ -63,6 +68,6 @@ class Pengajuan extends Model
 
     public function bangunan()
     {
-        return $this->hasMany(type_bangunan::class,'pengajuan');
+        return $this->hasMany(type_bangunan::class,'pengajuan_id');
     }
 }

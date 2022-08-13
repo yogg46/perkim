@@ -91,7 +91,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <!-- BEGIN: JS Assets-->
         @livewireScripts
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <x-livewire-alert::scripts />
+        
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
@@ -103,7 +106,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
         <script type="text/javascript">
-        
+
             $('.show_confirm').click(function(event) {
                 var form = $(this).closest("form");
                 var name = $(this).data("name");

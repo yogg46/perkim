@@ -211,8 +211,91 @@
                         <tbody>
 
                             <tr>
+                                <td>1</td>
+                                <td>Surat Permohonan pengesahan Site Plan Bupati Magetan Cq. Kepala Dinas Perumahan dan
+                                    Kawasan Permukiman Kab. Magetan*</td>
                                 <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Fotokopi IPR/ IL/ IPPT *</td>
                                 <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Fotokopi bukti kepemilikan lahan (Sertifikat Tanah, Akta Jual Beli, dan pelepasan
+                                    hak), dilengkapi dengan scan peta bidang atau gambar hasil ukur ulang dari kantor
+                                    pertanahan *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Fotokopi :Akta Pendirian PT (berdasarkan Hukum) bergerak di bodang perumahan SK
+                                    Menteri Hukum dan HAM beserta anggota asosiasi perumahan</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Fotokopi PBB tahun berjalan *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Fotokopi SPPL/ UKPL – UPL/ Amdal (dokumen lingkungan) *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Fotokopi KTP *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Fotokopi KTP dan SKA Perencana (yang menggambar) *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Surat Rekomendasi dari Bidang SDA Dinas PUPR * <br>
+                                    a. Jika lahan bangunan berbatasan dengan saluran irigasi <br>
+                                    b. Jika menutup saluran irigasi
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Surat Rekomendasi dari Dinas PU Sumber Daya Air Provinsi * <br>
+                                    a. Jika lahan bangunan berbatasan dengan sungai <br>
+                                    b. Jika membuat jembatan
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Surat Kuasa / Surat Tugas di atas kertas bermaterai Rp. 6000,- dilengkappi KTP
+                                    pemegang Surat Kuasa *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Gambar Siteplan beserta rincian fasum, fasos, rencana drainase, dan jalan rangkap 2
+                                    (Dua) beserta file autocad *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>Surat Perjanjian Tertulis antara pemohon dengan pengelola makam di ketahui Kepala
+                                    Desa / Lurah terkait penyedoa TPU *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>Surat keterangan bebas banjir dari dinas terkait (bial diperlukan) *</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>Surat Keterangan lain bila diperlukan</td>
                                 <td></td>
                             </tr>
 
@@ -221,7 +304,23 @@
                     </table>
                 </div>
             @endif
+            @if ($step == 5)
+                <div class="intro-y flex flex-col sm:flex-row items-center mt-3">
+                    <h2 class="text-lg font-medium mr-auto">
+                        Nomer Surat Rekomendasi :
+                    </h2>
+                    <h2 class="text-lg font-medium mr-auto">
+                        812/129/123.122/1235
+                    </h2>
 
+                </div>
+
+                <div class=" intro-y flex mt-8">
+
+                    <iframe src="{{ Storage::url('berkas/cxE2xznLDrTOgaw3kwnYRViT4AoZXSThyoHZB3xB.pdf') }}"
+                        frameborder="0" style="border-style: none;width: 100%;  height: 820px;"> </iframe>
+                </div>
+            @endif
 
             <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
                 @if ($step > 1)

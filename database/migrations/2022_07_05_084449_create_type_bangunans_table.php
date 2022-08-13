@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('type_bangunans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pengajuan')->constrained()
+            $table->unsignedBigInteger('pengajuan_id')->constrained()
                 ->onUpdate('cascade');
             $table->string('type');
             $table->integer('jumlah');

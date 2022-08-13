@@ -4,11 +4,15 @@ use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\UserMentController;
 use App\Http\Controllers\ImageUploadController;
+use App\Http\Livewire\CobaBerkas;
 use App\Http\Livewire\Pengajuan;
+use App\Http\Livewire\Pengajuan\AddPengajuan;
 use App\Http\Livewire\Pengajuan\Index as PengajuanIndex;
+use App\Http\Livewire\Pengajuan\ListPengajuan;
 use App\Http\Livewire\UserManagement\Index;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Psy\CodeCleaner\ListPass;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +56,8 @@ Route::get('/view-image', [ImageUploadController::class, 'viewImage'])->name('im
 
 Route::any('/pengajuans', PengajuanIndex::class)->middleware('auth');
 Route::get('/pengajuans/{slug}', Pengajuan::class)->middleware('auth');
+
+Route::any('/berkas', CobaBerkas::class)->middleware('auth');
+
+Route::any('/pengajuan/tambah',AddPengajuan::class)->middleware('auth');
+Route::any('/riwayat',ListPengajuan::class)->middleware('auth');

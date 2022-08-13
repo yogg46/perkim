@@ -21,7 +21,7 @@ class type_bangunanFactory extends Factory
         $pengajuan = Pengajuan::pluck('id');
 
         return [
-            'pengajuan' => $this->faker->randomElement($pengajuan),
+            'pengajuan_id' => $this->faker->randomElement($pengajuan),
             'type'=> Arr::random(['type 12', 'type 24', 'type 53', 'type 34', 'Usaha']),
             'jumlah'=> $this->faker->randomNumber(3, true),
             'kategori' => Arr::random(['Subsidi','Komersil','Ruko']),

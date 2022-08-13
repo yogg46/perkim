@@ -45,7 +45,7 @@
 
 @if (Auth::user()->role == 1)
     <li>
-        <a href="javascript:;.html" class="{{ $menu }} {{ $menu }}--active">
+        <a href="/home" class="{{ $menu }} {{ $tittle == 'Dashboard' ? $menu . '--active' : '' }}">
             <div class="{{ $menu }}__icon"> <i data-lucide="home"></i> </div>
             <div class="{{ $menu }}__title"> Dashboard
                 {{-- <i data-lucide="chevron-down" class="{{ $menu }}__sub-icon transform rotate-180"></i> --}}
@@ -56,7 +56,7 @@
     </li>
 
     <li>
-        <a href="javascript:;" class="{{ $menu }}">
+        <a href="/pengajuan/tambah" class="{{ $menu }} {{ $tittle == 'Pengajuan' ? $menu . '--active' : '' }}">
             <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
             <div class="{{ $menu }}__title">
                 Pengajuan
@@ -66,7 +66,7 @@
 
     </li>
     <li>
-        <a href="javascript:;" class="{{ $menu }}">
+        <a href="/riwayat" class="{{ $menu }} {{ $tittle == 'Riwayat' ? $menu . '--active' : '' }}">
             <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
             <div class="{{ $menu }}__title">
                 Riwayat

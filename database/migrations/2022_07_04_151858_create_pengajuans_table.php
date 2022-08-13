@@ -31,8 +31,9 @@ return new class extends Migration
             $table->string('kavling')->nullable();
             $table->string('total')->nullable();
             $table->string('total_kavling')->nullable();
-            $table->string('slug');
-            $table->string('status')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('status')->nullable()->default(0);
+            $table->string('action')->nullable()->default(0);
             $table->string('date')->nullable();
             $table->string('tahun')->nullable();
             $table->unsignedBigInteger('pengaju')->constrained()

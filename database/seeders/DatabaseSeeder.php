@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(Userseeder::class);
         $this->call(Hakseeder::class);
-        \App\Models\User::factory(30)->create();
+        $this->call(persyaratanSeeder::class);
+        \App\Models\User::factory(2)->create();
         Pengajuan::factory()->count(2)->create();
         type_bangunan::factory()->count(20)->create();
 

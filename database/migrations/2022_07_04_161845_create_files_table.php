@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('persyaratan')->nullable();
+            $table->string('nama');
+            $table->unsignedBigInteger('persyaratan')->constrained()
+                ->onUpdate('cascade')
+                ->nullable();
             $table->string('catatan')->nullable();
             $table->unsignedBigInteger('pengajuan')->constrained()
-                ->onUpdate('cascade');
+                ->onUpdate('cascade')->nullable();
             $table->timestamps();
         });
     }

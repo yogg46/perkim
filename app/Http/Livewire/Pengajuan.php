@@ -23,7 +23,7 @@ class Pengajuan extends Component
                 'slug1' => $this->pengajuan->nama_pro,
             ]
         )
-            ->section('isi');;
+            ->section('isi');
     }
 
 

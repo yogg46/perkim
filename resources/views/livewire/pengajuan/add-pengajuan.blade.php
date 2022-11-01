@@ -47,8 +47,8 @@
                 <form wire:submit.prevent="submit">
                     {{-- @json($pengajuans) <br>
                     @json($bangun)
-                    @json($pengajuans->id)
-                    @if ($step == 0) --}}
+                    @json($pengajuans->id) --}}
+                    @if ($step == 0)
                         {{-- <div class="font-medium text-base"></div> --}}
                         <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
                             <div class="intro-y col-span-12 sm:col-span-6">
@@ -363,152 +363,151 @@
                     </div>
                 @endif
                 @if ($step == 3)
-                    <form action="">
-                        <div class="overflow-x-auto">
-                            <table class="table table-bordered table-hover">
-                                <thead>
+                    {{-- <form action=""> --}}
+                    <div class="overflow-x-auto">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    {{-- <th class="whitespace-nowrap">#</th> --}}
+                                    <th class="whitespace-nowrap">No</th>
+                                    <th class="whitespace-nowrap">Persyaratan</th>
+                                    <th class="whitespace-nowrap min-w-40">Upload</th>
+                                    <th class="whitespace-nowrap">View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($per as $key)
                                     <tr>
-                                        {{-- <th class="whitespace-nowrap">#</th> --}}
-                                        <th class="whitespace-nowrap">No</th>
-                                        <th class="whitespace-nowrap">Persyaratan</th>
-                                        <th class="whitespace-nowrap">Upload</th>
-                                        <th class="whitespace-nowrap">View</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $key->persyaratan }}</td>
+                                        <td>
+                                            <a class="btn btn-success-soft text-success w-28 mr-2 mb-2 btn{{ $key->id }}"
+                                                data-tw-toggle="modal" data-tw-target="#upload-{{ $key->id }}">
+                                                Upload
+                                            </a>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Surat Permohonan pengesahan Site Plan Bupati Magetan Cq. Kepala Dinas
-                                            Perumahan
-                                            dan
-                                            Kawasan Permukiman Kab. Magetan*</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Fotokopi IPR/ IL/ IPPT *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Fotokopi bukti kepemilikan lahan (Sertifikat Tanah, Akta Jual Beli, dan
-                                            pelepasan
-                                            hak), dilengkapi dengan scan peta bidang atau gambar hasil ukur ulang dari
-                                            kantor
-                                            pertanahan *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Fotokopi :Akta Pendirian PT (berdasarkan Hukum) bergerak di bodang perumahan
-                                            SK
-                                            Menteri Hukum dan HAM beserta anggota asosiasi perumahan</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Fotokopi PBB tahun berjalan *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Fotokopi SPPL/ UKPL – UPL/ Amdal (dokumen lingkungan) *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Fotokopi KTP *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Fotokopi KTP dan SKA Perencana (yang menggambar) *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>Surat Rekomendasi dari Bidang SDA Dinas PUPR * <br>
-                                            a. Jika lahan bangunan berbatasan dengan saluran irigasi <br>
-                                            b. Jika menutup saluran irigasi
+                                            <div wire:ignore.self id="upload-{{ $key->id }}" class="modal"
+                                                tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <!-- BEGIN: Modal Header -->
+                                                        <div class="modal-header">
+                                                            <h2 class="font-medium text-base mr-auto">
+                                                                Upload Berkas
+                                                            </h2>
+                                                            <div>
+                                                                <a wire:click="resetBerkas" data-tw-dismiss="modal"
+                                                                    href="javascript:;">
+                                                                    <i data-lucide="x"
+                                                                        class="w-8 h-8 text-slate-400"></i> x </a>
+                                                            </div>
+                                                        </div> <!-- END: Modal Header -->
+                                                        <!-- BEGIN: Modal Body -->
+                                                        <form wire:submit.prevent="upBerkas({{ $key->id }})"
+                                                            enctype="multipart/form-data">
+                                                            <div class="modal-body ">
+                                                                <div class=" mb-3 font-medium">
+
+                                                                    <p>
+
+                                                                        {{ $key->persyaratan }}
+                                                                    </p>
+
+                                                                </div>
+                                                                <div>
+
+
+                                                                    {{-- @if ($berkas)
+                                                                            Photo Preview:
+                                                                            <iframe class=" w-auto w-full -mb-10"
+                                                                                src="{{ $berkas->temporaryUrl() }}"
+                                                                                frameborder="0" border="0"
+                                                                                cellspacing="0"
+                                                                                style="border-style: none;width: 100%;  height: 220px;">
+                                                                            </iframe><br>
+                                                                        @endif --}}
+                                                                </div>
+                                                                <input type="hidden" name=""
+                                                                    value="{{ $key->id }}"
+                                                                    wire:model="persyaratan">
+                                                                {{-- {{ $pengajuan_id }} --}}
+                                                                <input type="hidden" name=""
+                                                                    value="{{ $pengajuan_id }}"
+                                                                    wire:model="pengajuan">
+                                                                <div class="mb-3">
+                                                                    {{-- <label for="formFile" class="form-label">Default file input example</label> --}}
+                                                                    <input class="btn btn-primary-soft" type="file"
+                                                                        id="formFile" wire:model="berkas">
+                                                                    @error('berkas')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div> <!-- END: Modal Body -->
+                                                            <!-- BEGIN: Modal Footer -->
+                                                            <div class="modal-footer"> <button
+                                                                    wire:click="resetBerkas" type="button"
+                                                                    data-tw-dismiss="modal"
+                                                                    class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+
+                                                                <button data-tw-dismiss="modal" type="submit"
+                                                                    class="btn btn-primary w-20">
+
+                                                                    Selesai
+                                                                </button>
+
+                                                            </div>
+                                                        </form>
+
+                                                        <!-- END: Modal Footer -->
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>Surat Rekomendasi dari Dinas PU Sumber Daya Air Provinsi * <br>
-                                            a. Jika lahan bangunan berbatasan dengan sungai <br>
-                                            b. Jika membuat jembatan
+                                        <td>
+                                            <a class="btn btn-warning-soft text-warning w-28 mr-2 mb-2">
+                                                View
+                                            </a>
                                         </td>
-                                        <td></td>
-                                        <td></td>
                                     </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>Surat Kuasa / Surat Tugas di atas kertas bermaterai Rp. 6000,- dilengkappi
-                                            KTP
-                                            pemegang Surat Kuasa *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>Gambar Siteplan beserta rincian fasum, fasos, rencana drainase, dan jalan
-                                            rangkap 2
-                                            (Dua) beserta file autocad *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>Surat Perjanjian Tertulis antara pemohon dengan pengelola makam di ketahui
-                                            Kepala
-                                            Desa / Lurah terkait penyedoa TPU *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>Surat keterangan bebas banjir dari dinas terkait (bial diperlukan) *</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>15</td>
-                                        <td>Surat Keterangan lain bila diperlukan</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                @endforeach
 
-                                </tbody>
 
-                            </table>
-                        </div>
+                            </tbody>
 
-                        <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
-                            @if ($step > 0)
-                                <a wire:click="minus" class="btn  mx-2 btn-secondary w-24">Previous</a>
-                            @endif
-                            @if ($step < 3 || $step == 0)
-                                <button wire:click="plus" class="btn mx-2 btn-primary w-24 ml-2">Next</button>
-                            @endif
+                        </table>
+                    </div>
 
-                            @if ($step == 3)
-                                <a href="/riwayat" class="btn btn-primary mx-2 w-24 ml-2">selesai</a>
-                            @endif
-                            {{-- {{ $step }} --}}
-                        </div>
-                    </form>
+                    <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
+                        @if ($step > 0)
+                            <a wire:click="minus" class="btn  mx-2 btn-secondary w-24">Previous</a>
+                        @endif
+                        @if ($step < 3 || $step == 0)
+                            <button wire:click="plus" class="btn mx-2 btn-primary w-24 ml-2">Next</button>
+                        @endif
+
+                        @if ($step == 3)
+                            <a href="/riwayat" class="btn btn-primary mx-2 w-24 ml-2">selesai</a>
+                        @endif
+                        {{-- {{ $step }} --}}
+                    </div>
+                    {{-- </form> --}}
                 @endif
+
+
+
+
+
+                <!-- BEGIN: Modal Toggle -->
+
+                <!-- END: Modal Toggle -->
+                <!-- BEGIN: Modal Content -->
+                <!-- END: Modal Content -->
+
+
                 {{-- @if ($step == 5)
                         <div class="intro-y flex flex-col sm:flex-row items-center mt-3">
                             <h2 class="text-lg font-medium mr-auto">
@@ -526,7 +525,7 @@
                                 frameborder="0" style="border-style: none;width: 100%;  height: 820px;"> </iframe>
                         </div>
                     @endif --}}
-
+                {{-- @dd($berkas) --}}
 
 
             </div>

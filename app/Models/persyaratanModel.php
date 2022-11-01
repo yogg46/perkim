@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class persyaratanModel extends Model
 {
     use HasFactory;
+
+    public function syarat()
+    {
+        return  $this->hasMany(File::class, 'persyaratan');
+    }
 }

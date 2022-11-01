@@ -9,13 +9,13 @@ use Livewire\WithFileUploads;
 class CobaBerkas extends Component
 {
     use WithFileUploads;
-    public $nama, $persyaratan, $pengajuan, $catatan;
+    public $berkas, $persyaratan, $pengajuan, $catatan, $ket_sar;
     public function render()
     {
         return view(
             'livewire.coba-berkas',
             [
-                'berkas' => File::all(),
+                'berkas1' => File::all(),
 
             ]
         )->extends(
@@ -28,20 +28,23 @@ class CobaBerkas extends Component
             ->section('isi');
     }
 
-
+    public function seb()
+    {
+        $this->ket_sar = 'asu';
+    }
     public function submit()
     {
         $this->persyaratan = 1;
         $dataValid = $this->validate([
             'persyaratan' => 'required',
             'pengajuan' => 'required',
-            'nama' => 'required|mimes:jpg,jpeg,png,pdf',
+            'berkas' => 'required|mimes:jpg,jpeg,png,pdf',
         ]);
 
-        $dataValid['nama'] = $this->nama->store('berkas', 'public');
+        $dataValid['berkas'] = $this->berkas->store('berkas', 'public');
 
         File::create($dataValid);
-
+        $this->emit('up');
         session()->flash('message', 'File uploaded.');
     }
 }

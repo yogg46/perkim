@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Pengajuan as ModelsPengajuan;
+use App\Models\persyaratanModel;
+use App\Models\type_bangunan;
 use Livewire\Component;
 
 class Pengajuan extends Component
@@ -15,12 +17,20 @@ class Pengajuan extends Component
 
     public function render()
     {
-        return view('livewire.pengajuan'
+        return view(
+            'livewire.pengajuan',
+            [
+                'total' => type_bangunan::where('pengajuan_id', $this->pengajuan->id)->sum('jumlah'),
+                // 'syarat' => persyaratanModel::where('pengajuan_id', $this->pengajuan->id)->get(),
+                'syarat' => persyaratanModel::all(),
+            ]
         )->extends(
             'layouts.main',
             [
                 'tittle' => 'Pengajuan',
                 'slug1' => $this->pengajuan->nama_pro,
+
+
             ]
         )
             ->section('isi');
@@ -39,5 +49,4 @@ class Pengajuan extends Component
     {
         $this->step = $to;
     }
-
 }

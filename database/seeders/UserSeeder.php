@@ -28,28 +28,28 @@ class UserSeeder extends Seeder
             'username' => 'pengaju',
             'password' => bcrypt('password'),
             'role' => '1',
-            'dark' => 1,
+            'dark' => 0,
         ]);
         User::create([
             'name' => 'Joko',
             'username' => 'berkas',
             'password' => bcrypt('password'),
             'role' => '3',
-            'dark' => 1,
+            'dark' => 0,
         ]);
         User::create([
             'name' => 'Joko',
             'username' => 'lapangan',
             'password' => bcrypt('password'),
             'role' => '4',
-            'dark' => 1
+            'dark' => 0
         ]);
         User::create([
             'name' => 'Joko',
             'username' => 'rekom',
             'password' => bcrypt('password'),
             'role' => '5',
-            'dark' => 1,
+            'dark' => 0,
         ]);
     }
 }

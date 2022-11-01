@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('berkas');
+            $table->string('status')->default(0);
             $table->unsignedBigInteger('persyaratan')->constrained()
                 ->onUpdate('cascade')
                 ->nullable();

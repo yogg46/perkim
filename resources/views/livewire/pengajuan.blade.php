@@ -191,7 +191,7 @@
 
                             </th>
                             <th class=" whitespace-nowrap">
-                                123
+                                {{ $total }}
                             </th>
                         </tfoot>
                     </table>
@@ -206,105 +206,74 @@
                                 <th class="whitespace-nowrap">No</th>
                                 <th class="whitespace-nowrap">Persyaratan</th>
                                 <th class="whitespace-nowrap">View</th>
+                                @if (Auth::user()->role == 4)
+                                    <th class="whitespace-nowrap">Sesuai</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($syarat as $key)
+                                <tr>
 
-                            <tr>
-                                <td>1</td>
-                                <td>Surat Permohonan pengesahan Site Plan Bupati Magetan Cq. Kepala Dinas Perumahan dan
-                                    Kawasan Permukiman Kab. Magetan*</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Fotokopi IPR/ IL/ IPPT *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Fotokopi bukti kepemilikan lahan (Sertifikat Tanah, Akta Jual Beli, dan pelepasan
-                                    hak), dilengkapi dengan scan peta bidang atau gambar hasil ukur ulang dari kantor
-                                    pertanahan *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Fotokopi :Akta Pendirian PT (berdasarkan Hukum) bergerak di bodang perumahan SK
-                                    Menteri Hukum dan HAM beserta anggota asosiasi perumahan</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Fotokopi PBB tahun berjalan *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Fotokopi SPPL/ UKPL – UPL/ Amdal (dokumen lingkungan) *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Fotokopi KTP *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Fotokopi KTP dan SKA Perencana (yang menggambar) *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Surat Rekomendasi dari Bidang SDA Dinas PUPR * <br>
-                                    a. Jika lahan bangunan berbatasan dengan saluran irigasi <br>
-                                    b. Jika menutup saluran irigasi
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Surat Rekomendasi dari Dinas PU Sumber Daya Air Provinsi * <br>
-                                    a. Jika lahan bangunan berbatasan dengan sungai <br>
-                                    b. Jika membuat jembatan
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>Surat Kuasa / Surat Tugas di atas kertas bermaterai Rp. 6000,- dilengkappi KTP
-                                    pemegang Surat Kuasa *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>Gambar Siteplan beserta rincian fasum, fasos, rencana drainase, dan jalan rangkap 2
-                                    (Dua) beserta file autocad *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>13</td>
-                                <td>Surat Perjanjian Tertulis antara pemohon dengan pengelola makam di ketahui Kepala
-                                    Desa / Lurah terkait penyedoa TPU *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>14</td>
-                                <td>Surat keterangan bebas banjir dari dinas terkait (bial diperlukan) *</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>15</td>
-                                <td>Surat Keterangan lain bila diperlukan</td>
-                                <td></td>
-                            </tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $key->persyaratan }}</td>
+                                    <td>
+                                        <div wire:ignore.self class="text-center"> <a href="javascript:;"
+                                                data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview"
+                                                class="btn btn-primary">view</a> </div>
+                                    </td>
+                                    @if (Auth::user()->role == 4)
+                                        <td>
 
+                                        </td>
+                                    @endif
+                                    <!-- BEGIN: Modal Toggle -->
+                                    <!-- END: Modal Toggle -->
+                                    <!-- BEGIN: Modal Content -->
+
+                                </tr>
+                            @endforeach
+                            <div wire:ignore.self id="header-footer-modal-preview" class="modal" tabindex="-1"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <!-- BEGIN: Modal Header -->
+                                        <div class="modal-header">
+                                            <h2 class="font-medium text-base mr-auto">berkas</h2>
+                                            {{-- <button class="btn btn-outline-secondary hidden sm:flex"> <i
+                                                data-lucide="file" class="w-4 h-4 mr-2"></i> Download Docs
+                                        </button> --}}
+
+                                        </div> <!-- END: Modal Header -->
+                                        <!-- BEGIN: Modal Body -->
+                                        <div
+                                            class="modal-body grid grid-cols-12 gap-4 gap-y-3 scrollable scrollbar-hidden-y">
+
+
+                                            <iframe
+                                                src="{{ Storage::url('berkas/cxE2xznLDrTOgaw3kwnYRViT4AoZXSThyoHZB3xB.pdf') }}"
+                                                frameborder="0"
+                                                style="border-style: none;width: 820px;  height: 420px;">
+                                            </iframe>
+
+                                        </div> <!-- END: Modal Body -->
+                                        <!-- BEGIN: Modal Footer -->
+                                        <div class="modal-footer"> <button type="button" data-tw-dismiss="modal"
+                                                class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                                            <button type="button" class="btn btn-primary w-20">Send</button>
+                                        </div> <!-- END: Modal Footer -->
+                                    </div>
+                                </div>
+                            </div> <!-- END: Modal Content -->
                         </tbody>
 
                     </table>
                 </div>
             @endif
-            @if ($step == 5)
+            @if ($step == 5 && Auth::user()->role !== 5)
                 <div class="intro-y flex flex-col sm:flex-row items-center mt-3">
                     <h2 class="text-lg font-medium mr-auto">
                         Nomer Surat Rekomendasi :
@@ -321,16 +290,57 @@
                         frameborder="0" style="border-style: none;width: 100%;  height: 820px;"> </iframe>
                 </div>
             @endif
+            @if ($step == 5 && Auth::user()->role == 5)
+                <div class="grid grid-cols-24 gap-4 gap-y-5 mt-5">
+                    <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+                        <div class="intro-y col-span-6 sm:col-span-6">
+                            <label for="input-wizard-78" class="form-label">Nama Developer</label>
+                            <input id="input-wizard-78" type="text" class="form-control"
+                                placeholder="{{ $pengajuan->nama_dev }}">
+                        </div>
+                        <div class="intro-y col-span-6 sm:col-span-6">
+                            <label for="input-wizard-88" class="form-label">Nama Proyek</label>
+                            <input id="input-wizard-88" type="text" class="form-control"
+                                placeholder="{{ $pengajuan->nama_pro }}">
+                        </div>
+                        <div class="intro-y col-span-6 sm:col-span-6">
+                            <label for="input-wizard-99" class="form-label">Nomor Surat Rekomendasi</label>
+                            <input id="input-wizard-99" type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="intro-y col-span-6 sm:col-span-6">
+                            <label for="input-wizard-100" class="form-label">File Surat Rekomendasi</label>
+                            <div id="input-wizard-100" class="form-control text-center btn-block btn-group"
+                                style="width:100%">
+                                <button class="btn btn-success text-white   " style="width:49%"> up</button>
+                                <button class="btn btn-primary " style="width:49%"> lihat</button>
+                            </div>
+                            {{-- <input id="input-wizard-99" type="text" class="form-control" placeholder=""> --}}
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+
+                    </div>
+                </div>
+            @endif
 
             <div class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5">
-                @if ($step > 1)
+                @if ($step > 1 && Auth::user()->role !== 5)
                     <button wire:click="minus" class="btn  mx-2 btn-secondary w-24">Previous</button>
                 @endif
-                @if ($step < 5 || $step == 1)
+                @if ($step > 1 && $step < 5 && Auth::user()->role == 5)
+                    <button wire:click="minus" class="btn  mx-2 btn-secondary w-24">Previous</button>
+                @endif
+                @if ($step < 5 || ($step == 1 && Auth::user()->role !== 5))
                     <button wire:click="plus" class="btn mx-2 btn-primary w-24 ml-2">Next</button>
                 @endif
 
-                @if ($step == 5)
+                @if ($step == 5 && Auth::user()->role == 5)
+                    <a href="/pengajuans" class="btn  mx-2 btn-secondary w-24">Ditolak</a>
+                @endif
+                @if ($step == 5 && Auth::user()->role == 5)
+                    <a href="/pengajuans" class="btn btn-primary mx-2 w-24 ml-2">Disetujui</a>
+                @endif
+                @if ($step == 5 && Auth::user()->role !== 5)
                     <a href="/pengajuans" class="btn btn-primary mx-2 w-24 ml-2">selesai</a>
                 @endif
                 {{-- {{ $step }} --}}

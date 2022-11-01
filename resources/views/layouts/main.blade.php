@@ -28,10 +28,11 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="/dist/css/app.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
 
-    @livewireStyles
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+    @livewireStyles
+
 
     <!-- END: CSS Assets-->
 </head>
@@ -94,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <x-livewire-alert::scripts />
-        
+
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
@@ -106,7 +107,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
         <script type="text/javascript">
-
             $('.show_confirm').click(function(event) {
                 var form = $(this).closest("form");
                 var name = $(this).data("name");
@@ -136,6 +136,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     stopOnFocus: true,
                 }).showToast();
             });
+        </script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script>
+            window.livewire.on('postUpdated', (postId) => {
+                $('#upload-' + postId).modal('hide');
+            })
         </script>
         <!-- END: JS Assets-->
 </body>

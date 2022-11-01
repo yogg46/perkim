@@ -2316,9 +2316,9 @@ select{
     width: 100vw;
     opacity: 0;
   }
-.modal.modal-overlap {
+/* .modal.modal-overlap {
       background: #000000a6;
-    }
+    } */
 .modal.modal-static .modal-content {
         -webkit-animation: modal-static-backdrop 0.3s infinite;
                 animation: modal-static-backdrop 0.3s infinite;

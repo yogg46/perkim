@@ -73,7 +73,7 @@ class persyaratanSeeder extends Seeder
         ]);
         persyaratanModel::create([
             // 'id' => 0,
-            'persyaratan' => 'Surat keterangan bebas banjir dari dinas terkait (bial diperlukan) *',
+            'persyaratan' => 'Surat keterangan bebas banjir dari dinas terkait (bila diperlukan) *',
         ]);
         persyaratanModel::create([
             // 'id' => 0,

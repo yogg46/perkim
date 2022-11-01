@@ -70,4 +70,12 @@ class Pengajuan extends Model
     {
         return $this->hasMany(type_bangunan::class,'pengajuan_id');
     }
+    public function berkas()
+    {
+        return $this->hasMany(File::class,'pengajuan');
+    }
+    // public function syarat()
+    // {
+    //     return $this->hasMany(persyaratanModel::class,'pengajuan');
+    // }
 }

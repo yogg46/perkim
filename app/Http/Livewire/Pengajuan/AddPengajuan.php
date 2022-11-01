@@ -2,29 +2,39 @@
 
 namespace App\Http\Livewire\Pengajuan;
 
+use App\Models\File;
 use App\Models\Pengajuan;
+use App\Models\persyaratanModel;
 use App\Models\type_bangunan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
 class AddPengajuan extends Component
 {
     use LivewireAlert;
+    use WithFileUploads;
 
 
-    public $dev, $nama_dev, $alamat_dev, $no_hp, $asosiasi, $no_asosiasi, $date, $tahun;
+    public $dev, $nama_dev, $alamat_dev, $no_hp, $asosiasi, $no_asosiasi, $date, $tahun, $berkas, $persyaratan, $pengajuan;
 
 
 
 
     public function render()
     {
-        return view('livewire.pengajuan.add-pengajuan', [])
+        return view('livewire.pengajuan.add-pengajuan', [
+            'per' => persyaratanModel::all(),
+            'ber' => File::where('pengajuan', $this->pengajuan_id)->get(),
+            'berkas' => persyaratanModel::whereHas('syarat', function ($q) {
+                $q->where('pengajuan', 'LIKE', $this->pengajuan_id);
+            })->get(),
+        ])
             ->extends(
                 'layouts.main',
                 [
@@ -158,7 +168,7 @@ class AddPengajuan extends Component
             'tel_pemohon2' => $this->tel_pemohon2,
             'psu' => $this->psu,
             'kavling' => $this->kavling,
-            'total' => $this->total,
+            'total' => intval($this->psu) + intval($this->kavling),
         ]);
         $this->alert('success', 'Data Berhasil Diupdate', [
             'position' => 'top-right',
@@ -237,14 +247,28 @@ class AddPengajuan extends Component
             ]
         );
 
-        foreach ($this->type as $key => $value) {
-            $this->bangun = type_bangunan::create([
-                'pengajuan_id' => $this->pengajuan_id,
-                'type' => $this->type[$key],
-                'jumlah' => $this->jumlah[$key],
-                'kategori' => $this->kategori[$key]
-            ]);
+
+        if ($this->bangun) {
+            type_bangunan::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
+            foreach ($this->type as $key => $value) {
+                $this->bangun = type_bangunan::updateOrCreate([
+                    'pengajuan_id' => $this->pengajuan_id,
+                    'type' => $this->type[$key],
+                    'jumlah' => $this->jumlah[$key],
+                    'kategori' => $this->kategori[$key]
+                ]);
+            }
+        } else {
+            foreach ($this->type as $key => $value) {
+                $this->bangun = type_bangunan::updateOrCreate([
+                    'pengajuan_id' => $this->pengajuan_id,
+                    'type' => $this->type[$key],
+                    'jumlah' => $this->jumlah[$key],
+                    'kategori' => $this->kategori[$key]
+                ]);
+            }
         }
+
 
         $this->alert('success', 'Data Berhasil Diupdate', [
             'position' => 'top-right',
@@ -258,5 +282,44 @@ class AddPengajuan extends Component
         $this->pengajuans = tap($this->pengajuans)->update([
             'total_kavling' => $this->total_kavling
         ]);
+    }
+
+    // public $id_per, $ket_sar;
+
+    // public function sebelumUP($id, $ket)
+    // {
+    //     $this->id_per = $id;
+    //     $this->ket_sar = $ket;
+    // }
+
+    public function upBerkas($per)
+    {
+        $this->persyaratan = $per;
+        $this->pengajuan = $this->pengajuan_id;
+        $dataValid = $this->validate([
+            'persyaratan' => 'required',
+            'pengajuan' => 'required',
+            'berkas' => 'required|mimes:jpg,jpeg,png,pdf',
+        ]);
+
+        $dataValid['berkas'] = $this->berkas->store('berkas', 'public');
+
+        File::create($dataValid);
+
+        $this->dispatchBrowserEvent('postUpdated', "$per");
+        $this->resetBerkas();
+        $this->alert('success', 'Berkas Berhasil Disimpan', [
+            'position' => 'top-right',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
+        $this->emit('postUpdated');
+    }
+    public function resetBerkas()
+    {
+        $this->emit('postUpdated');
+
+        $this->persyaratan = null;
+        $this->berkas = null;
     }
 }

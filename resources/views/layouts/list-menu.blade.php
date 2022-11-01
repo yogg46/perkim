@@ -56,7 +56,8 @@
     </li>
 
     <li>
-        <a href="/pengajuan/tambah" class="{{ $menu }} {{ $tittle == 'Pengajuan' ? $menu . '--active' : '' }}">
+        <a href="/pengajuan/tambah"
+            class="{{ $menu }} {{ $tittle == 'Pengajuan' ? $menu . '--active' : '' }}">
             <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
             <div class="{{ $menu }}__title">
                 Pengajuan
@@ -70,6 +71,75 @@
             <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
             <div class="{{ $menu }}__title">
                 Riwayat
+                {{-- <div class="{{ $menu }}__sub-icon "> <i data-lucide="chevron-down"></i> </div> --}}
+            </div>
+        </a>
+
+    </li>
+@endif
+@if (Auth::user()->role == 3)
+    <li>
+        <a href="/home" class="{{ $menu }} {{ $tittle == 'Dashboard' ? $menu . '--active' : '' }}">
+            <div class="{{ $menu }}__icon"> <i data-lucide="home"></i> </div>
+            <div class="{{ $menu }}__title"> Dashboard
+                {{-- <i data-lucide="chevron-down" class="{{ $menu }}__sub-icon transform rotate-180"></i> --}}
+            </div>
+        </a>
+
+
+    </li>
+
+    <li>
+        <a href="/pengajuans" class="{{ $menu }} {{ $tittle == 'Pengajuan' ? $menu . '--active' : '' }}">
+            <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
+            <div class="{{ $menu }}__title">
+                Pengajuan
+                {{-- <div class="{{ $menu }}__sub-icon "> <i data-lucide="chevron-down"></i> </div> --}}
+            </div>
+        </a>
+
+    </li>
+@endif
+@if (Auth::user()->role == 4)
+    <li>
+        <a href="/home" class="{{ $menu }} {{ $tittle == 'Dashboard' ? $menu . '--active' : '' }}">
+            <div class="{{ $menu }}__icon"> <i data-lucide="home"></i> </div>
+            <div class="{{ $menu }}__title"> Dashboard
+                {{-- <i data-lucide="chevron-down" class="{{ $menu }}__sub-icon transform rotate-180"></i> --}}
+            </div>
+        </a>
+
+
+    </li>
+
+    <li>
+        <a href="/pengajuans" class="{{ $menu }} {{ $tittle == 'Pengajuan' ? $menu . '--active' : '' }}">
+            <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
+            <div class="{{ $menu }}__title">
+                Pengajuan
+                {{-- <div class="{{ $menu }}__sub-icon "> <i data-lucide="chevron-down"></i> </div> --}}
+            </div>
+        </a>
+
+    </li>
+@endif
+@if (Auth::user()->role == 5)
+    <li>
+        <a href="/home" class="{{ $menu }} {{ $tittle == 'Dashboard' ? $menu . '--active' : '' }}">
+            <div class="{{ $menu }}__icon"> <i data-lucide="home"></i> </div>
+            <div class="{{ $menu }}__title"> Dashboard
+                {{-- <i data-lucide="chevron-down" class="{{ $menu }}__sub-icon transform rotate-180"></i> --}}
+            </div>
+        </a>
+
+
+    </li>
+
+    <li>
+        <a href="/pengajuans" class="{{ $menu }} {{ $tittle == 'Pengajuan' ? $menu . '--active' : '' }}">
+            <div class="{{ $menu }}__icon"> <i data-lucide="box"></i> </div>
+            <div class="{{ $menu }}__title">
+                Pengajuan
                 {{-- <div class="{{ $menu }}__sub-icon "> <i data-lucide="chevron-down"></i> </div> --}}
             </div>
         </a>
